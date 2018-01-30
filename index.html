@@ -1,0 +1,39 @@
+<html ng-app="app">
+
+<head>
+  <link rel="stylesheet" href="/style.css">
+  <title>My First Angular App</title>
+</head>
+{{ test }}
+
+<body ng-controller="friendCtrl">
+  <h1>
+    My Friends List:
+  </h1>
+  <input ng-model="input" placeholder="New Friend"></input>
+
+  <input ng-model="search" placeholder="Filter Friends"></input>
+
+  <button ng-click="addFriend(input)">Add Friend</button>
+  <div ng-repeat="friend in friends | filter: search | orderBy: '+' track by $index">
+    <div ng-class="{strike:clicked}">
+      {{ friend }}
+    </div>
+    <div class=''>
+      <button ng-click="removeFriend($index)">
+        Unfriend
+      </button>
+      <button ng-hide="clicked" ng-click="clicked = !clicked">
+        I'm not talking to you
+      </button>
+      <button ng-show="clicked" ng-click="clicked = !clicked">
+        Ok, you've repented!
+      </button>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.js"></script>
+  <script src="app.js"></script>
+  <script src="mainCtrl.js"></script>
+</body>
+
+</html>
